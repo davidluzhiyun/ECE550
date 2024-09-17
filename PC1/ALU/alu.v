@@ -25,7 +25,7 @@ module alu(data_operandA, data_operandB, ctrl_ALUopcode, ctrl_shiftamt, data_res
 				  
 	// since overflow is only for add subtract, we are not using another mux here
 	
-	adder_subtractor(data_operandA, data_operandB, ctrl_ALUopcode[0], c_out, overflow, sum);
+	adder_subtractor alu_adder(data_operandA, data_operandB, ctrl_ALUopcode[0], c_out, overflow, sum);
 	
 
 endmodule
