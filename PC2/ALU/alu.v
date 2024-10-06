@@ -35,10 +35,14 @@ module alu(data_operandA, data_operandB, ctrl_ALUopcode, ctrl_shiftamt, data_res
 	
 	// is less than
 	wire a_neg_b_pos;
+	wire not_a_pos_b_neg;
 	wire b_pos;
 	not(b_pos,data_operandB[31]);
-	and(a_neg_b_pos,data_operandA[31]);
-	or(isLessThan,data_result[31],a_neg_b_pos);
+	and(a_neg_b_pos,data_operandA[31],b_pos);
+	or(not_a_pos_b_neg, data_operandA[31],b_pos);
+	wire res1;
+	or(res1,data_result[31],a_neg_b_pos);
+	and(isLessThan, res1, not_a_pos_b_neg);
 	
 	// not equal
 	wire ne[0:31];
